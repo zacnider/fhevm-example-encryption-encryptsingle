@@ -1,20 +1,20 @@
 # EntropyEncryption
 
-Encrypt and store values using EntropyOracle
+Learn how to encrypt a single value using FHE.fromExternal
 
-## Overview
+## 📚 Overview
 
 @title EntropyEncryption
-@notice Encrypt and store values using EntropyOracle
-@dev Example demonstrating EntropyOracle integration: using entropy for encryption patterns
-This example shows:
-- How to integrate with EntropyOracle
-- Using entropy to enhance encryption patterns
+@notice Encrypt and store values using encrypted randomness
+@dev This example teaches you how to integrate encrypted randomness into your FHEVM contracts: using entropy for encryption patterns
+In this example, you will learn:
+- How to integrate encrypted randomness
+- How to use encrypted randomness to enhance encryption patterns
 - Combining user-encrypted values with entropy
 - Entropy-based encryption key generation
 
-@notice Constructor - sets EntropyOracle address
-@param _entropyOracle Address of EntropyOracle contract
+@notice Constructor - sets encrypted randomness address
+@param _encrypted randomness Address of encrypted randomness contract
 
 @notice Encrypt and store a single value
 @param encryptedInput Encrypted value from user (externalEuint64)
@@ -23,7 +23,7 @@ This example shows:
 
 @notice Request entropy for encryption enhancement
 @param tag Unique tag for this request
-@return requestId Request ID from EntropyOracle
+@return requestId Request ID from encrypted randomness
 @dev Requires 0.00001 ETH fee
 
 @notice Encrypt and store value with entropy enhancement
@@ -42,7 +42,7 @@ This example shows:
 
 @notice Check if value is initialized
 
-@notice Get EntropyOracle address
+@notice Get encrypted randomness address
 
 
 
