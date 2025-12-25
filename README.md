@@ -1,6 +1,10 @@
 # EntropyEncryption
 
-Encrypt and store values using EntropyOracle
+Learn how to encrypt a single value using FHE.fromExternal
+
+## 🎓 What You'll Learn
+
+This example teaches you how to use FHEVM to build privacy-preserving smart contracts. You'll learn step-by-step how to implement encrypted operations, manage permissions, and work with encrypted data.
 
 ## 🚀 Quick Start
 
@@ -48,19 +52,19 @@ Encrypt and store values using EntropyOracle
 
 ---
 
-## 📋 Overview
+## 📚 Overview
 
 @title EntropyEncryption
-@notice Encrypt and store values using EntropyOracle
-@dev Example demonstrating EntropyOracle integration: using entropy for encryption patterns
-This example shows:
-- How to integrate with EntropyOracle
-- Using entropy to enhance encryption patterns
+@notice Encrypt and store values using encrypted randomness
+@dev This example teaches you how to integrate encrypted randomness into your FHEVM contracts: using entropy for encryption patterns
+In this example, you will learn:
+- How to integrate encrypted randomness
+- How to use encrypted randomness to enhance encryption patterns
 - Combining user-encrypted values with entropy
 - Entropy-based encryption key generation
 
-@notice Constructor - sets EntropyOracle address
-@param _entropyOracle Address of EntropyOracle contract
+@notice Constructor - sets encrypted randomness address
+@param _encrypted randomness Address of encrypted randomness contract
 
 @notice Encrypt and store a single value
 @param encryptedInput Encrypted value from user (externalEuint64)
@@ -69,7 +73,7 @@ This example shows:
 
 @notice Request entropy for encryption enhancement
 @param tag Unique tag for this request
-@return requestId Request ID from EntropyOracle
+@return requestId Request ID from encrypted randomness
 @dev Requires 0.00001 ETH fee
 
 @notice Encrypt and store value with entropy enhancement
@@ -88,15 +92,15 @@ This example shows:
 
 @notice Check if value is initialized
 
-@notice Get EntropyOracle address
+@notice Get encrypted randomness address
 
 
 
-## 🔐 Zama FHEVM Usage
+## 🔐 Learn Zama FHEVM Through This Example
 
-This example demonstrates the following **Zama FHEVM** features:
+This example teaches you how to use the following **Zama FHEVM** features:
 
-### Zama FHEVM Features Used
+### What You'll Learn About
 
 - **ZamaEthereumConfig**: Inherits from Zama's network configuration
   ```solidity
@@ -106,10 +110,8 @@ This example demonstrates the following **Zama FHEVM** features:
   ```
 
 - **FHE Operations**: Uses Zama's FHE library for encrypted operations
-  - `FHE.add()` - Zama FHEVM operation
-  - `FHE.sub()` - Zama FHEVM operation
-  - `FHE.mul()` - Zama FHEVM operation
-  - `FHE.eq()` - Zama FHEVM operation
+  - `FHE.fromExternal()` - Zama FHEVM operation
+  - `FHE.allowThis()` - Zama FHEVM operation
   - `FHE.xor()` - Zama FHEVM operation
 
 - **Encrypted Types**: Uses Zama's encrypted integer types
@@ -135,31 +137,30 @@ import {ZamaEthereumConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
 ### Zama FHEVM Code Example
 
 ```solidity
-// Using Zama FHEVM's encrypted integer type
-euint64 private encryptedValue;
+// Handling user-provided encrypted values (Zama FHEVM)
+euint64 internalValue = FHE.fromExternal(encryptedInput, inputProof);
+FHE.allowThis(internalValue);
 
-// Converting external encrypted value to internal (Zama FHEVM)
-euint64 internalValue = FHE.fromExternal(encryptedValue, inputProof);
-FHE.allowThis(internalValue); // Zama FHEVM permission system
-
-// Performing encrypted operations using Zama FHEVM
-euint64 result = FHE.add(encryptedValue, FHE.asEuint64(1));
-FHE.allowThis(result);
+// Mixing with entropy using Zama FHEVM operations
+euint64 entropy = entropyOracle.getEncryptedEntropy(requestId);
+FHE.allowThis(entropy);
+euint64 enhancedValue = FHE.xor(internalValue, entropy);
+FHE.allowThis(enhancedValue);
 ```
 
-### Zama FHEVM Concepts Demonstrated
+### FHEVM Concepts You'll Learn
 
-1. **Encrypted Arithmetic**: Using Zama FHEVM to encrypted arithmetic
-2. **Encrypted Comparison**: Using Zama FHEVM to encrypted comparison
-3. **External Encryption**: Using Zama FHEVM to external encryption
-4. **Permission Management**: Using Zama FHEVM to permission management
-5. **Entropy Integration**: Using Zama FHEVM to entropy integration
+1. **External Encryption**: Learn how to use Zama FHEVM for external encryption
+2. **Input Proofs**: Learn how to use Zama FHEVM for input proofs
+3. **Permission Management**: Learn how to use Zama FHEVM for permission management
+4. **Entropy Integration**: Learn how to use Zama FHEVM for entropy integration
 
 ### Learn More About Zama FHEVM
 
 - 📚 [Zama FHEVM Documentation](https://docs.zama.org/protocol)
 - 🎓 [Zama Developer Hub](https://www.zama.org/developer-hub)
 - 💻 [Zama FHEVM GitHub](https://github.com/zama-ai/fhevm)
+
 
 
 ## 🔍 Contract Code
